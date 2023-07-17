@@ -27,8 +27,10 @@ class TestEnsemble(unittest.TestCase):
 
         m = OneInputOneOutputOneEventLM()
         
-        with self.assertRaises(ValueError):
+        try:
             EnsembleModel([m])
+        except ValueError:
+            self.fail("Error EnsembleModel raised ValueError Unexpectedly")
 
     def test_wrong_type(self):
         # An ensemble model with a non-model should raise an exception
